@@ -79,6 +79,6 @@ object TOTPSecret {
    * No error checking.
    */
   def fromHex(hex: String): TOTPSecret = {
-    new TOTPSecret(BigInt(hex,16))
+    new TOTPSecret(new java.math.BigInteger(hex,16))
   }
 }
