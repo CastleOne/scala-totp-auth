@@ -1,19 +1,40 @@
-###scala-totp-auth
+### scala-totp-auth
+
+[![Build Status](https://travis-ci.org/marklister/scala-totp-auth.png)](https://travis-ci.org/marklister/scala-totp-auth)
 
 This is a scala object that implements RFC 6238 time based one time passwords.
-The HOTP protocol is identical except that timeing is not used to select OTPs.
+The HOTP protocol is identical except that timing is not used to select OTPs.
+*scala-totp-auth* exists to make it easy to integrate totp into one of my Play 2.0 applications.  Target portable device runs Google Authenticator.
 
-###API
+### Sample login code
 
-Take a look at the [scaladoc](http://milo-minderbender.github.com/scala-totp-auth/target/scala-2.9.2/api/org/catch22/totp/auth/package.html) 
+```scala
+//Retrieve the user's secret from the db
+//retrieve the pin that the user entered from their device
 
-###Running
+val ok =Authenticator.pinMatchesSecret(userPin,TOTPSecret(base32Secret))
+...
+```
+
+### API
+
+Take a look at the [scaladoc](http://marklister.github.com/scala-totp-auth/latest/api/index.html#org.catch22.totp.auth.package) 
+
+### Running
 
 Check out the project 
 
 Type `sbt run` 
 
-###Test
+### Reference Implementation
+
+The Refererence Implementation is in the test sources.  *scala-totp-auth*'s behaviour should exactly match the RI.  There are a few tests that check this.
+
+If you find any differences please file an issue.
+
+If you think some behaviour should be different from the RI be prepared to motivate your proposal very well.
+
+### Test
 
 `sbt test`
 
@@ -39,6 +60,10 @@ Type `sbt run`
     44699063: 799711
     44699064: 061042
 
-###How to use it in my project?
+### How to use it in my project?
 
-for now there's only an [unmanaged jar](https://github.com/milo-minderbender/scala-totp-auth/raw/gh-pages/target/scala-2.9.2/scala-totp-auth_2.9.2-1.01.jar) or build it from source.
+There's an 
+  - [unmanaged jar 2.9](https://marklister.github.com/scala-totp-auth/scala-totp-auth_2.9.2-1.01.jar) 
+  - [unmanaged jar for 2.10](https://marklister.github.com/scala-totp-auth/scala-totp-auth_2.10-1.1.jar)
+
+Or build it from source.  There is only one class and two objects.
