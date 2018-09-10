@@ -98,8 +98,8 @@ object Authenticator {
  * @return true if the secret generates the pin within the default window.
  *          false otherwise.
  */
-  def pinMatchesSecret(pin:String, secret:TOTPSecret):Boolean={
-    totpSeq(secret=secret).contains(pin.trim)
+  def pinMatchesSecret(pin:String, secret:TOTPSecret, time:Long = System.currentTimeMillis / 30000):Boolean={
+    totpSeq(secret=secret, time=time).contains(pin.trim)
   }
 
 /** 
